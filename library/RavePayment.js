@@ -3,7 +3,7 @@ import encryption from './encryption';
 import Axios from 'axios';
 
 export default class RavePayment {
-  constructor({ publicKey, secretKey, production = false, currency = "NGN", country = "NG", txRef = "txref-" + Date.now(), amount, email, firstname, lastname, meta }) {
+  constructor({ publicKey, secretKey, production = false, currency = "NGN", country = "NG", txRef = "txref-" + Date.now(), amount, email, firstname, lastname }) {
     var baseUrlMap = ["https://ravesandboxapi.flutterwave.com/", "https://api.ravepay.co/"]
     this.baseUrl = (production) ? baseUrlMap[1] : baseUrlMap[0];
 
@@ -34,23 +34,28 @@ export default class RavePayment {
     this.getLastname = function () {
       return lastname;
     }
-    this.getMeta = function () {
-      return meta;
-    }
 
 
     this.charge = function (payload) {
       //insert constant data
       payload.PBFPubKey = this.getPublicKey();
-      payload.currency = this.getCurrency();
+
+      if (!payload.currency)
+        payload.currency = this.getCurrency();
+
       payload.country = this.getCountry();
       payload.txRef = this.getTransactionReference();
-      payload.amount = this.getAmount();
+
+      if (!payload.amount)
+        payload.amount = this.getAmount();
+
       payload.email = this.getEmail();
       payload.firstname = this.getFirstname();
       payload.lastname = this.getLastname();
-      payload.meta = this.getMeta();
-      
+
+      console.log("Currency ", payload.currency)
+      console.log("Amount ", payload.amount)
+
 
       return new Promise((resolve, reject) => {
         var client = encryption({ payload, secretkey: this.getSecretKey() });

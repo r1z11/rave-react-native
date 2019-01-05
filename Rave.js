@@ -37,15 +37,15 @@ export default class Rave extends React.Component {
     header = <View></View>;
     paymentHeader = this.props.paymenttype.charAt(0).toUpperCase();
     paymentHeader = paymentHeader + this.props.paymenttype.substr(1);
-    singlePageHeader = <Text style={{ fontSize: 22, textAlign: 'center', paddingVertical: 25, color: this.props.secondarycolor, fontWeight: "bold", borderBottomColor: this.props.secondarycolor, borderBottomWidth: 2}}>{(paymentHeader) == "Mobilemoneygh" ? 'Mobile Money' : paymentHeader}</Text>;
+    singlePageHeader = <Text style={{ fontSize: 22, textAlign: 'center', paddingVertical: 25, color: this.props.secondarycolor, fontWeight: "bold", borderBottomColor: this.props.secondarycolor, borderBottomWidth: 2 }}>{(paymentHeader) == "Mobilemoneygh" ? 'Mobile Money' : paymentHeader}</Text>;
 
     if (this.props.paymenttype == 'both' && this.props.currency == 'NGN') {
       header = <CardAccountHeader page={this.getPage} />;
       if (this.state.page == "card") {
         page = <Card rave={this.rave} primarycolor={this.props.primarycolor} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
-      // }else if (this.state.page == "ussd") {
-      //   page = <Ussd rave={this.raveussd} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
-      }else {
+        // }else if (this.state.page == "ussd") {
+        //   page = <Ussd rave={this.raveussd} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
+      } else {
         page = <Account rave={this.rave} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
       }
     } else if (this.props.paymenttype == "account") {
@@ -55,14 +55,14 @@ export default class Rave extends React.Component {
       header = <CardMpesaHeader page={this.getPage} />;
       if (this.state.page == "mpesa") {
         page = <Mpesa rave={this.ravempesa} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
-      }else {
+      } else {
         page = <Card rave={this.rave} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
       }
     } else if (this.props.paymenttype == 'both' && this.props.currency == 'GHS') {
       header = <CardMmoneyHeader page={this.getPage} />;
       if (this.state.page == "mobilemoneygh") {
         page = <Mmoney rave={this.ravemmoney} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
-      }else {
+      } else {
         page = <Card rave={this.rave} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
       }
     } else if (this.props.paymenttype == 'mpesa' && this.props.currency == 'KES') {
@@ -75,20 +75,20 @@ export default class Rave extends React.Component {
       if (this.state.page == "mobilemoneygh") {
         page = <Mmoney rave={this.ravemmoney} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
       }
-    // } else if (this.props.paymenttype == "ussd") {
-    //     header = <CardAccountHeader page={this.getPage} />;
-    //     if (this.state.page == "ussd"){
-    //       page = <Ussd rave={this.raveussd} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
-    //     } else if (this.state.page == "card") {
-    //       page = <Card rave={this.rave} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
-    //     }else {
-    //       page = <Account rave={this.rave} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
-    //     }
+      // } else if (this.props.paymenttype == "ussd") {
+      //     header = <CardAccountHeader page={this.getPage} />;
+      //     if (this.state.page == "ussd"){
+      //       page = <Ussd rave={this.raveussd} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
+      //     } else if (this.state.page == "card") {
+      //       page = <Card rave={this.rave} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
+      //     }else {
+      //       page = <Account rave={this.rave} primarycolor={this.props.primarycolor} phone={this.props.phone} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
+      //     }
     } else {
-      header = <Text style={{ fontSize: 22, textAlign: 'center', paddingVertical: 15, color: this.props.secondarycolor, fontWeight: "bold", borderBottomColor: this.props.secondarycolor, borderBottomWidth: 2}}>Card</Text>;
+      header = <Text style={{ fontSize: 22, textAlign: 'center', paddingVertical: 15, color: this.props.secondarycolor, fontWeight: "bold", borderBottomColor: this.props.secondarycolor, borderBottomWidth: 2 }}>Card</Text>;
       page = <Card rave={this.rave} primarycolor={this.props.primarycolor} secondarycolor={this.props.secondarycolor} amount={this.props.amount} currency={this.props.currency} onSuccess={res => this.props.onSuccess(res)} onFailure={e => this.props.onFailure(e)} />;
     }
-    
+
     // This returns the header and body of the payment page to the users based on the selected payment type and page state
     return (
       <View style={styles.container}>
@@ -114,14 +114,14 @@ Rave.propTypes = {
   secretkey: PropTypes.string.isRequired,
   txref: PropTypes.string,
   primarycolor: PropTypes.string,
-  secondarycolor: PropTypes.string, 
+  secondarycolor: PropTypes.string,
   paymenttype: PropTypes.string.isRequired,
   production: PropTypes.bool,
   meta: PropTypes.array,
   page: PropTypes.string
 }
 
-let transactionReference = "txref-"+Date.now();
+let transactionReference = "txref-" + Date.now();
 
 
 // Props to set default payload parameters if none is set
